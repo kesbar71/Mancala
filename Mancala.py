@@ -155,43 +155,6 @@ def makeMove():   # code for making the move goes here
     else:
         return None
 
-# make the computer's move 
-        
-        
-    # if the player's move is invalid
-    # make the computer's move
-    # return True if the computer gets another turn
-    # return False if the computer does not get another turn
-def makeComputerMove():
-    global move
-    global Board
-    global score
-    turn = [True, False] # it is now the computer's turn
-    side = ["bottom", "top"] # the computer is now on the bottom
-    move[1] = random.randint(1, 6) # choose a random move for the computer
-    stones = Board[1][move[1] - 1] # get the number of stones in the selected pit
-    Board[1][move[1] - 1] = 0 # empty the selected pit
-    i = move[1] # start at the selected pit
-    while stones > 0: # while there are still stones to distribute
-        i += 1 # move to the next pit
-        if i == 13: # if we reach the end of the player's side
-            i = 0 # start at the beginning of the computer's side
-        else: # if we are still on the computer's side
-            Board[1][i] += 1 # add a stone to the current pit
-            stones -= 1 # remove a stone from the computer's pit
-    if i == 0: # if the last stone landed in the computer's mancala
-        return True # the computer gets another turn
-    elif Board[1][i - 1] == 1 and i <= 6: # if the last stone landed in an empty pit on the computer's side
-        score[1] += Board[0][12 - i] + 1 # add the stones in the opposite pit and the last stone to the computer's score
-        Board[1][0] += Board[0][12 - i] # add the stones in the opposite pit to the computer's pit
-        Board[1][i - 1] = 0 # empty the current pit
-        Board[0][12 - i] = 0 # empty the opposite pit
-        return True # the computer gets another turn
-    else: # if the last stone landed in a non-empty pit on the computer's side
-        turn = [True, False] # it is now the player's turn
-        side = ["top", "bottom"] # the player is now on the top
-        return False # the computer does not get another turn
-
 # make the computer's move
 # return True if the computer gets another turn
 # return False if the computer does not get another turn
