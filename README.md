@@ -1,0 +1,2 @@
+# Mancala
+Simple Mancala game
